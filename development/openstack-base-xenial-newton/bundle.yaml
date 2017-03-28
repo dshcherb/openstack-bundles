@@ -219,10 +219,14 @@ services:
     charm: cs:~openstack-charmers-next/xenial/nova-compute
     num_units: 3
     options:
-      openstack-origin: cloud:xenial-newton
+      #openstack-origin: cloud:xenial-newton
       enable-live-migration: true
       enable-resize: true
       migration-auth-type: ssh
+
+      # XXX: Workaround for https://bugs.launchpad.net/bugs/1567807
+      openstack-origin: cloud:xenial-newton/proposed
+
     to:
     - '1'
     - '2'
