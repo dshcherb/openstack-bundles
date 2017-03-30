@@ -1,0 +1,42 @@
+machines:
+  "0":
+    series: xenial
+  "1":
+    series: xenial
+  "2":
+    series: xenial
+  "3":
+    series: xenial
+  "4":
+    series: xenial
+relations:
+  - - "ceph-mon:osd"
+    - "ceph-osd:mon"
+services:
+  ceph-osd:
+    charm: cs:~openstack-charmers-next/xenial/ceph-osd
+    num_units: 5
+    options:
+      "osd-devices": /dev/sdb /dev/sdc /dev/sdd /dev/sde
+    annotations:
+      "gui-x": "0"
+      "gui-y": "0"
+    to:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - "4"
+  ceph-mon:
+    charm: cs:~openstack-charmers-next/xenial/ceph-mon
+    num_units: 3
+    options:
+      monitor-count: 3
+      expected-osd-count: 5
+    annotations:
+      "gui-x": "250.0"
+      "gui-y": "0"
+    to:
+      - 'lxd:0'
+      - 'lxd:1'
+      - 'lxd:2'
