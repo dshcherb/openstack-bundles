@@ -210,7 +210,9 @@ services:
     annotations:
       gui-x: '250'
       gui-y: '250'
-    charm: cs:~openstack-charmers-next/xenial/nova-compute
+    #charm: cs:~openstack-charmers-next/xenial/nova-compute
+    # TEMP WIP for https://bugs.launchpad.net/charm-helpers/+bug/1611134
+    charm: cs:~1chb1n/nova-compute
     num_units: 3
     options:
       enable-live-migration: true
